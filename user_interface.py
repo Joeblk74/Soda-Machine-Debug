@@ -4,7 +4,7 @@ class user_interface:
 # added class
 
 
-    def simulation_main_menu():
+    def simulation_main_menu(self):
         """Main menu prompting user to choose an option"""
         validate_user_selection = (False, None)
         while validate_user_selection[0] is False:
@@ -13,8 +13,8 @@ class user_interface:
             print("\tPress -1- to check wallet for coins")
             print("\tPress -2- to check backpack for cans")
             print("\tPress -3- to terminate simulation")
-            user_input = try_parse_int(input())
-            validate_user_selection = validate_main_menu(user_input)
+            user_input = self.try_parse_int(input())
+            validate_user_selection = self.validate_main_menu(user_input)
         return validate_user_selection[1]
 
 
@@ -38,10 +38,10 @@ class user_interface:
         print('Your wallet\'s total value is {total_value}')
 
 
-    def display_welcome():
+    def display_welcome(self):
         """Initial method asking user if they'll make a purchase. No errors."""
         print("\nWelcome to the soda machine.  We only take coins as payment. \n")
-        user_response = continue_prompt("Would you like to make a purchase? (y/n):")
+        user_response = self.continue_prompt("Would you like to make a purchase? (y/n):")
         if user_response:
             return True
         else:
@@ -69,18 +69,18 @@ class user_interface:
         return switcher.get(user_input, False)
 
 
-    def soda_selection(inventory):
+    def soda_selection(self, inventory):
         """Displays purchasable soda inventory and """
         validated_user_selection = (False, None)
-        soda_options = get_unique_can_names(inventory)
+        soda_options = self.get_unique_can_names(inventory)
         while validated_user_selection[0] is False:
             print("Please choose from the following options:")
             i = 1
             for can in soda_options:
                 print("\n\tEnter -{i}- for {can} : ${can.price}")
             # deleted i++
-            user_selection = try_parse_int(input("Selection:"))
-            validated_user_selection = validate_coin_choice(user_selection, soda_options)
+            user_selection = self.try_parse_int(input("Selection:"))
+            validated_user_selection = self.validate_coin_choice(user_selection, soda_options)
         return validated_user_selection[1]
 
 
@@ -128,7 +128,7 @@ class user_interface:
         print(f'You currently have ${total_payment_value} in hand')
 
 
-    def coin_selection():
+    def coin_selection(self):
         """Prompts user to choose which coins to deposit and passes their selection in validate_coin_selection"""
         validated_user_selection = (False, None)
         while validated_user_selection[0] is False:
@@ -137,8 +137,8 @@ class user_interface:
             print("\tEnter -N- for Nickel")
             print("\tEnter -P- for Penny")
             print("\tEnter -5- for when finished to deposit payment into machine")
-            user_input = try_parse_int(input())
-            validated_user_selection = validate_coin_selection(user_input)
+            user_input = self.try_parse_int(input())
+            validated_user_selection = self.validate_coin_selection(user_input)
             if validated_user_selection[0] is False:
                 print("Not a valid selection try again")
         return validated_user_selection[1]
@@ -158,6 +158,6 @@ class user_interface:
 
     def end_message(soda_name, change_amount):
         """Closing message displaying name of soda purchased and amount of change returned"""
-        print(f'Enjoy your {soda}')
+        print(f'Enjoy your {soda_name}')
         if change_amount >= 0:
             print(f'Dispensing ${change_amount}')
