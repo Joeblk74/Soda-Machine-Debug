@@ -1,6 +1,6 @@
 from wallet import Wallet
 from backpack import Backpack
-from user_interface import user_interface
+import user_interface
 from coins import Coin
 # added imports
 
@@ -33,14 +33,14 @@ class Customer:
     def get_wallet_coin(self, coin_name):
         """Method responsible for retrieving a single coin from wallet's money list"""
         for coin in self.wallet.money:
-            if coin.name == coin.name:
+            if coin_name == coin.name:
                 self.wallet.money.remove(coin)
                 return coin
         return None
 
     def add_coins_to_wallet(self, coins_list):
         """Method responsible for adding coins from a list into wallet's money list"""
-        for coin in coin_list:
+        for coin in coins_list:
             self.wallet.money.append(coins_list)
 
     def add_can_to_backpack(self, dispensed_can):
