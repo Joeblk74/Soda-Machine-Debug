@@ -12,13 +12,13 @@ class Customer:
         # added self.coins = Coin
         # deleted self.coins = Coin
 
-    def gather_coins_from_wallet(self, selected_soda):
+    def gather_coins_from_wallet(self, selected_can):
         """Method allowing user to choose coins from wallet for payment"""
-        will_proceed = False
+        will_proceed = True
         customer_payment = []
         user_interface.output_text("Continue to add coins until you are ready to insert them into the machine")
         while will_proceed:
-            user_interface.display_can_cost(selected_soda)
+            user_interface.display_can_cost(selected_can)
             user_interface.display_payment_value(customer_payment)
             coin_name = user_interface.coin_selection()
             if coin_name == "done":
@@ -49,7 +49,7 @@ class Customer:
 
     def check_coins_in_wallet(self):
         """Creates a list of the amount of each coin contained in wallet and passes list to user interface function."""
-        total_value = 0
+        NoneType = 0
         coins_quantity = [0, 0, 0, 0]
         for coin in self.wallet.money:
             total_value += coin.value
